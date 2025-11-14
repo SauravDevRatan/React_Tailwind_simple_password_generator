@@ -18,7 +18,11 @@ function Cards() {
     setPassword(pass);
   },[length,numbers,letters]);
 
-  useEffect(()=>{generatePassword()},[length,numbers,letters])
+  useEffect(()=>{generatePassword()},[length,numbers,letters]);
+
+  const copyPassword=()=>{
+    window.navigator.clipboard.writeText(password);
+  }
 
   return (
     <div className="w-full min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-500 to-purple-600 p-6">
@@ -38,7 +42,7 @@ function Cards() {
         />
 
         {/* Stylish Button */}
-        <button className="w-full py-2 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-700 active:bg-blue-800 transition">
+        <button onClick={copyPassword} className="w-full py-2 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-700 active:bg-blue-800 transition">
           Copy
         </button>
 
