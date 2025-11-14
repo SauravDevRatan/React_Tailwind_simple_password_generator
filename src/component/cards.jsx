@@ -1,4 +1,4 @@
-import { useState,useCallback,useEffect } from "react";
+import { useState,useCallback,useEffect ,useRef} from "react";
 
 function Cards() {
   const [length, setLength] = useState(8);
@@ -20,8 +20,11 @@ function Cards() {
 
   useEffect(()=>{generatePassword()},[length,numbers,letters]);
 
+  let passwordRef=useRef();
+
   const copyPassword=()=>{
     window.navigator.clipboard.writeText(password);
+    passwordRef.current?.select()
   }
 
   return (
@@ -39,6 +42,7 @@ function Cards() {
           readOnly
           className="w-full p-3 rounded-lg bg-white/30 text-white placeholder-white/70 outline-none mb-4"
           placeholder="Generated password"
+          ref={passwordRef}
         />
 
         {/* Stylish Button */}
